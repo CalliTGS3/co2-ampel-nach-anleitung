@@ -1,0 +1,22 @@
+{
+    "name": "CO2 Ampel nach Anleitung",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "co2-ampel-anleitung": "github:CalliTGS3/co2-ampel-anleitung#06941e66ed6990844c18e84f0961a066bb91b71e",
+        "SCD30": "github:callitgs3/pxt-scd30#v0.9.0"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "supportedTargets": [
+        "calliopemini"
+    ],
+    "preferredEditor": "blocksprj"
+}
