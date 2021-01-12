@@ -1,10 +1,9 @@
 let CO2 = 0
 input.onButtonPressed(Button.A, function () {
     CO2 = SCD30.readCO2()
-    basic.showNumber(CO2)
 })
 input.onButtonPressed(Button.B, function () {
-    CO2 = SCD30.readCO2()
+    basic.showNumber(CO2)
 })
 function ZeigeCO2 () {
     if (CO2 < 1000) {
