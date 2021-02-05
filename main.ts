@@ -36,11 +36,11 @@ function ZeigeCO2 () {
     }
     basic.pause(100)
     basic.clearScreen()
+    basic.pause(900)
 }
 basic.forever(function () {
     CO2 = SCD30.readCO2()
     for (let index = 0; index < 60; index++) {
         ZeigeCO2()
-        basic.pause(1000)
     }
 })
