@@ -1,4 +1,3 @@
-let CO2 = 0
 // CO2 Messen
 input.onButtonPressed(Button.A, function () {
     CO2 = SCD30.readCO2()
@@ -46,6 +45,12 @@ function ZeigeCO2 () {
     // Solange bleiben die LED's aus
     basic.pause(900)
 }
+let CO2 = 0
+basic.showString("Kalibriere Sensor")
+basic.pause(1000)
+SCD30.setCalibration400ppm()
+basic.pause(1000)
+basic.showString("Starte Messung")
 basic.forever(function () {
     CO2 = SCD30.readCO2()
     // 60 mal 1sec = 1min
