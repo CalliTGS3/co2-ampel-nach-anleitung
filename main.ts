@@ -46,15 +46,32 @@ function ZeigeCO2 () {
     basic.pause(900)
 }
 let CO2 = 0
-basic.showString("Kalibriere Sensor")
+let item = 0
+let tm = TM1637.create(
+DigitalPin.C16,
+DigitalPin.C17,
+7,
+4
+)
+tm.showDP(1, false)
+tm.intensity(2)
+basic.showString("K")
 basic.pause(1000)
 SCD30.setCalibration400ppm()
 basic.pause(1000)
-basic.showString("Starte Messung")
+basic.showString("M")
 basic.forever(function () {
     CO2 = SCD30.readCO2()
     // 60 mal 1sec = 1min
     for (let index = 0; index < 60; index++) {
         ZeigeCO2()
+        tm.showNumber(CO2)
+    }
+})
+basic.forever(function () {
+    if (CO2 > 1000) {
+        motors.motorPower(100)
+    } else {
+        motors.motorPower(0)
     }
 })
