@@ -2,6 +2,14 @@
 input.onButtonPressed(Button.A, function () {
     CO2 = SCD30.readCO2()
 })
+input.onButtonPressed(Button.AB, function () {
+    if (KalibrierenErlaubt) {
+        basic.showString("K")
+        basic.pause(1000)
+        SCD30.setCalibration400ppm()
+        basic.pause(1000)
+    }
+})
 // CO2 als Zahlenwert anzeigen
 input.onButtonPressed(Button.B, function () {
     basic.showNumber(CO2)
@@ -46,6 +54,7 @@ function ZeigeCO2 () {
     basic.pause(900)
 }
 let CO2 = 0
+let KalibrierenErlaubt = false
 let item = 0
 let tm = TM1637.create(
 DigitalPin.C16,
@@ -55,13 +64,12 @@ DigitalPin.C17,
 )
 tm.showDP(1, false)
 tm.intensity(2)
-basic.showString("Zum Kalibrieren jetzt A+B drücken")
-if (input.buttonIsPressed(Button.AB)) {
-    basic.showString("K")
-    basic.pause(1000)
-    SCD30.setCalibration400ppm()
-    basic.pause(1000)
+basic.showString("Kalibrieren: A+B")
+KalibrierenErlaubt = true
+for (let index = 0; index < 10; index++) {
+    basic.pause(500)
 }
+KalibrierenErlaubt = false
 basic.showString("M")
 basic.forever(function () {
     CO2 = SCD30.readCO2()
