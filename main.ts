@@ -55,10 +55,13 @@ DigitalPin.C17,
 )
 tm.showDP(1, false)
 tm.intensity(2)
-basic.showString("K")
-basic.pause(1000)
-SCD30.setCalibration400ppm()
-basic.pause(1000)
+basic.showString("Zum Kalibrieren jetzt A+B drücken")
+if (input.buttonIsPressed(Button.AB)) {
+    basic.showString("K")
+    basic.pause(1000)
+    SCD30.setCalibration400ppm()
+    basic.pause(1000)
+}
 basic.showString("M")
 basic.forever(function () {
     CO2 = SCD30.readCO2()
