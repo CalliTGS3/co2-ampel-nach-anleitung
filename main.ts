@@ -75,8 +75,7 @@ basic.forever(function () {
     CO2 = SCD30.readCO2()
     // 60 mal 1sec = 1min
     for (let index = 0; index < 60; index++) {
-        ZeigeCO2()
-        tm.showNumber(CO2)
+        basic.pause(1000)
     }
 })
 basic.forever(function () {
@@ -85,4 +84,8 @@ basic.forever(function () {
     } else {
         motors.motorPower(0)
     }
+})
+basic.forever(function () {
+    ZeigeCO2()
+    tm.showNumber(CO2)
 })
